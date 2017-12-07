@@ -1,6 +1,11 @@
+/**
+ * Edward Yaroslavsky and Kelvin Chen 
+ * SortAMania Team 5
+ * 12/7/17
+ */
 import java.util.Arrays;
 
-public class Team5 {
+public class Team5 extends SortCompetition{
 
 	public static void main(String[] args) {
 /*		System.out.println("Challenge 1:");
@@ -37,26 +42,40 @@ public class Team5 {
 			}
 			System.out.println();
 		}
-		*/
 		
-		String[] list2 = {"Kelvi","AaAaA","Acccc","Black","Edwar"};
-		System.out.println(challengeFive(list2,"Kelvi"));
-		for (int x = 0; x < list2.length; x++) {
-			System.out.print(list2[x]+ " ");
+		
+		String[] list5 = {"Kelvi","AaAaA","Acccc","Black","Edwar"};
+		System.out.println(challengeFive(list5,"Kelvi"));
+		for (int x = 0; x < list5.length; x++) {
+			System.out.print(list5[x]+ " ");
 		}
+		*/
 		
 	}
 	
-	public static int challengeOne(int[] arr) {
+	/**
+	 * Sorts an array and finds its median
+	 * @param arr - the array that holds the median value and is to be sorted
+	 * @return the int median value of the array
+	 */
+	public int challengeOne(int[] arr) {
 		quickSort(arr, 0, arr.length);
 		return (int) median(arr);
 	}
+	
 /*	public static double challengeOne(double[] arr)
 	{
 		quickSort(arr,0,arr.length);
 		return median(arr);
 	} */
-	public static int challengeTwo(String[] arr, String search)
+	
+	/**
+	 * Sorts an array of Strings and finds if a certain String is in the array
+	 * @param arr - the array to be sorted and searched through
+	 * @param search - the String to be looked for in the array
+	 * @return the position of the search word
+	 */
+	public int challengeTwo(String[] arr, String search)
 	{
 		String[] arr2 = mergeSort(arr);
 		for(int i = 0; i < arr2.length;i++)
@@ -74,11 +93,21 @@ public class Team5 {
 		return -1;	
 	}
 	
-	public static int challengeThree(int[] arr) {
+	/**
+	 * Sorts an array and finds its median
+	 * @param arr - the array to be sorted
+	 * @return the median of the array
+	 */
+	public int challengeThree(int[] arr) {
 		return challengeOne(arr);
 	}
 	
-	public static int challengeFour(int[][] arr2D) {
+	/**
+	 * Sorts a 2D array and finds the median of medians
+	 * @param arr2D - the 2D array that holds the median value and is to be sorted  
+	 * @return the median of the medians in the 2D array
+	 */
+	public int challengeFour(int[][] arr2D) {
 		int[] medianArr = new int[arr2D[0].length];
 		for (int x = 0; x < arr2D.length; x++) {
 			medianArr[x]= challengeOne(arr2D[x]);
@@ -107,7 +136,14 @@ public class Team5 {
 		reverseColumnsInPlace(arr2D);
 		return challengeOne(medianArr);
 	}
-	public static int challengeFive(Comparable[] arr, Comparable query)
+	
+	/**
+	 * Sorts Comparable Objects and finds the position of a certain key Object in the array
+	 * @param arr - the Comparable array to be sorted and searched
+	 * @param query - the Comparable key Object to be searched for
+	 * @return the position of the query in the array
+	 */
+	public int challengeFive(Comparable[] arr, Comparable query)
 	{
 		Comparable[] arr2 = mergeSort2(arr);
 		for(int i = 0; i < arr2.length;i++)
@@ -123,18 +159,38 @@ public class Team5 {
 		}
 		return -1;
 	}
-	public static double median(int[] arr) {
+	
+	/**
+	 * Introduces the sorter with a greeting 
+	 * @return String of the greeting
+	 */
+	public String greeting()
+	{
+		return "KELVIN AND EDWARD'S AMAZING SORTER: "
+				+ "\nHow many programmers does it take to screw in a light bulb?"
+				+ "\nNone ... That's a hardware problem.";
+	}
+	
+	/**
+	 * Finds the median of an array
+	 * @param arr - the array that holds the median value
+	 * @return the double median of the array
+	 */
+	public double median(int[] arr) {
 		if (arr.length % 2 == 0) {
 			return (double)((arr[arr.length/2] + arr[arr.length/2 - 1]) / 2.0);
 		}
 		return (double)(arr[(arr.length-1) / 2]);
 	}
+	
+
 /*	public static double median(double[] arr) {
 		if (arr.length % 2 == 0) {
 			return ((arr[arr.length/2] + arr[arr.length/2 - 1]) / 2.0);
 		}
 		return (arr[(arr.length-1) / 2]); 
 	} */
+	
 	/**
 	 * Uses a pivot from an array to partition the array so that numbers less than the pivot would be to its left, 
 	 * and numbers greater to its right.
@@ -143,7 +199,7 @@ public class Team5 {
 	 * @param back - the back position of the array
 	 * @return the new position of the pivot
 	 */
-	public static int partition(int[] list1, int front, int back) {
+	public int partition(int[] list1, int front, int back) {
 			int pivot = list1[front];
 			int front2 = front;
 			int pivotPos = front;
@@ -166,6 +222,7 @@ public class Team5 {
 			list1[front2] = temp;
 			return front2+1;
 		}
+	
 	/**
 	 * Uses a pivot from an array to partition the array so that numbers less than the pivot would be to its left, 
 	 * and numbers greater to its right.
@@ -174,7 +231,7 @@ public class Team5 {
 	 * @param back - the back position of the array
 	 * @return the new position of the pivot
 	 */
-	public static int partition(double[] list1, int front, int back) {
+	public int partition(double[] list1, int front, int back) {
 			double pivot = list1[front];
 			int front2 = front;
 			int pivotPos = front;
@@ -198,14 +255,13 @@ public class Team5 {
 			return front2+1;
 		}
 	
-	
 	/**
 	 * Sorts an array through recursion and constant use of partition 
 	 * @param list1 - the array to be sorted
 	 * @param front - the front position of the array
 	 * @param back - the back position of the array
 	 */
-	public static void quickSort(int[] list1, int front, int back) {
+	public void quickSort(int[] list1, int front, int back) {
 		if(back - front <= 1)
 		{
 			return;
@@ -217,6 +273,7 @@ public class Team5 {
 		}
 
 	}
+	
 	/*/**
 	 * Sorts an array through recursion and constant use of partition 
 	 * @param list1 - the array to be sorted
@@ -236,7 +293,15 @@ public class Team5 {
 
 	}
 	*/
-	public static void quickSort( int[] pos, int front, int back, int[][] arr)
+	
+	/**
+	 * Quick sorts the 2D array through partition and recursion
+	 * @param pos - position of the pivot
+	 * @param front - int of the front location
+	 * @param back - int of the back location
+	 * @param arr - 2D array to be sorted
+	 */
+	public void quickSort(int[] pos, int front, int back, int[][] arr)
 	{
 		if(back - front <= 1)
 		{
@@ -248,7 +313,16 @@ public class Team5 {
 			quickSort(pos, pivotPos+1, back, arr); 
 		}
 	}
-	public static int partition(int[] pos, int front, int back, int[][] list1) {
+	
+	/**
+	 * Partitions the arrays
+	 * @param pos - position of the pivot array
+	 * @param front - int of the front location
+	 * @param back - int of the back location
+	 * @param list1 - 2D array to be partitioned
+	 * @return the int position of the pivot array
+	 */
+	public int partition(int[] pos, int front, int back, int[][] list1) {
 		int pivot = pos[front];
 		int front2 = front;
 		int pivotPos = front;
@@ -277,22 +351,28 @@ public class Team5 {
 		list1[front2] = temp2;
 		return front2+1;
 	}
-	public static void reverseColumnsInPlace(int[][] matrix){
-        for(int col = 0;col < matrix[0].length; col++){
-            for(int row = 0; row < matrix.length/2; row++) {
-                int temp = matrix[row][col];
-                matrix[row][col] = matrix[matrix.length - row - 1][col];
-                matrix[matrix.length - row - 1][col] = temp;
+	
+	/**
+	 * Reverses the order of the 2D array
+	 * @param arr - the 2D array that needs to be reversed
+	 */
+	public void reverseColumnsInPlace(int[][] arr){
+        for(int x = 0;x < arr[0].length; x++){
+            for(int y = 0; y < arr.length/2; y++) {
+                int temp = arr[y][x];
+                arr[y][x] = arr[arr.length - y - 1][x];
+                arr[arr.length - y - 1][x] = temp;
             }
     }
 }
+	
 	/**
 	 * Merges two lists in alphabetical order
 	 * @param list1 - first array to be looked at
 	 * @param list2 - second array to be looked at
 	 * @return - A merged String array in alphabetical order
 	 */
-	public static Comparable[] merge2(Comparable[] list1, Comparable[] list2) {
+	public Comparable[] merge2(Comparable[] list1, Comparable[] list2) {
 		Comparable[] list3 = new Comparable[list1.length + list2.length];
 		int x = 0;
 		int y = 0;
@@ -332,7 +412,7 @@ public class Team5 {
 	 * @param list - the array to be sorted
 	 * @return - the String array in its sorted form
 	 */
-	public static Comparable[] mergeSort2(Comparable[] list) {
+	public Comparable[] mergeSort2(Comparable[] list) {
 		if (list.length == 1) {
 			return list;
 		}
@@ -343,7 +423,14 @@ public class Team5 {
 			
 		}
 	}
-	public static String[] merge(String[] list1, String[] list2) {
+	
+	/**
+	 * Creates a merged list
+	 * @param list1 - first String array to be merged 
+	 * @param list2 - second String array to be merged
+	 * @return the new merged String array
+	 */
+	public String[] merge(String[] list1, String[] list2) {
 		String[] list3 = new String[list1.length + list2.length];
 		int x = 0;
 		int y = 0;
@@ -383,7 +470,7 @@ public class Team5 {
 	 * @param list - the array to be sorted
 	 * @return - the String array in its sorted form
 	 */
-	public static String[] mergeSort(String[] list) {
+	public String[] mergeSort(String[] list) {
 		if (list.length == 1) {
 			return list;
 		}
@@ -394,11 +481,12 @@ public class Team5 {
 			
 		}
 	}
+	
 	/**
 	 * Sorts a String array by checking items next to each other to see which holds greater value
 	 * @param medianArr - the array to be sorted
 	 */
-	public static void bubbleSort(int[] medianArr, int[] medianArrPos) {
+	public void bubbleSort(int[] medianArr, int[] medianArrPos) {
 		int counter = medianArr.length-1;
 		while (counter > 0) {
 			for (int x = 0; x < medianArr.length-1; x++) {
@@ -417,9 +505,5 @@ public class Team5 {
 				}
 			}
 		}	
-	}
-	public String greeting()
-	{
-		return "KELVIN AND EDWARD";
 	}
 }
