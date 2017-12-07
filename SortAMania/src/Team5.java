@@ -9,7 +9,7 @@ public class Team5 {
 		for (int x = 0; x < list1.length; x++) {
 			System.out.print(list1[x]);
 		}
-		
+			
 		System.out.println(); System.out.println();
 		System.out.println("Challenge 2:");
 		String[] list2 = {"Kelvi","AaAaA","Acccc","Black","Edwar"};
@@ -25,7 +25,7 @@ public class Team5 {
 		for (int x = 0; x < list3.length; x++) {
 			System.out.print(list3[x]);
 		}
-*/		
+	
 		System.out.println(); System.out.println();
 		System.out.println("Challenge 4:");
 		int[][] list4 = {{4,5,6,6,8},{7,8,9,9,3},{1,2,3,3,7},{6,1,2,3,5},{8,1,5,3,5}};
@@ -37,6 +37,14 @@ public class Team5 {
 			}
 			System.out.println();
 		}
+		*/
+		
+		String[] list2 = {"Kelvi","AaAaA","Acccc","Black","Edwar"};
+		System.out.println(challengeFive(list2,"Kelvi"));
+		for (int x = 0; x < list2.length; x++) {
+			System.out.print(list2[x]+ " ");
+		}
+		
 	}
 	
 	public static int challengeOne(int[] arr) {
@@ -60,7 +68,7 @@ public class Team5 {
 		{
 			if(search.equals(arr[x]))
 			{
-				return x+1;
+				return x;
 			}
 		}
 		return -1;	
@@ -101,11 +109,14 @@ public class Team5 {
 	}
 	public static int challengeFive(Comparable[] arr, Comparable query)
 	{
-		//.compareTo
-		mergeSort(arr);
+		Comparable[] arr2 = mergeSort2(arr);
+		for(int i = 0; i < arr2.length;i++)
+		{
+			arr[i] = arr2[i];
+		}
 		for(int x = 0;x < arr.length;x++)
 		{
-			if(arr[x].equals(query))
+			if(arr2[x].equals(query))
 			{
 				return x;
 			}
@@ -281,7 +292,7 @@ public class Team5 {
 	 * @param list2 - second array to be looked at
 	 * @return - A merged String array in alphabetical order
 	 */
-	public static Comparable[] merge(Comparable[] list1, Comparable[] list2) {
+	public static Comparable[] merge2(Comparable[] list1, Comparable[] list2) {
 		Comparable[] list3 = new Comparable[list1.length + list2.length];
 		int x = 0;
 		int y = 0;
@@ -321,14 +332,14 @@ public class Team5 {
 	 * @param list - the array to be sorted
 	 * @return - the String array in its sorted form
 	 */
-	public static Comparable[] mergeSort(Comparable[] list) {
+	public static Comparable[] mergeSort2(Comparable[] list) {
 		if (list.length == 1) {
 			return list;
 		}
 		else {
 			Comparable[] newList = Arrays.copyOfRange(list,0,list.length / 2);
 			Comparable[] newList2 = Arrays.copyOfRange(list,list.length / 2,list.length);
-			return merge(mergeSort(newList),mergeSort(newList2));
+			return merge2(mergeSort2(newList),mergeSort2(newList2));
 			
 		}
 	}
@@ -407,5 +418,8 @@ public class Team5 {
 			}
 		}	
 	}
-	
+	public String greeting()
+	{
+		return "KELVIN AND EDWARD";
+	}
 }
