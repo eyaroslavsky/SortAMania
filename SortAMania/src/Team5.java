@@ -118,14 +118,14 @@ public class Team5 extends SortCompetition{
 		}
 		bubbleSort(medianArr, medianArrPos);
 		
-		System.out.println("Median Array Sorted: ");
-		for (int z = 0; z < medianArrPos.length; z++) {
-			System.out.print(medianArr[z]+ " ");
-		}
-		System.out.println("Median Array Positions:");
-		for (int z = 0; z < medianArrPos.length; z++) {
-			System.out.print(medianArrPos[z]+ " ");
-		}
+//		System.out.println("Median Array Sorted: ");
+//		for (int z = 0; z < medianArrPos.length; z++) {
+//			System.out.print(medianArr[z]+ " ");
+//		}
+//		System.out.println("Median Array Positions:");
+//		for (int z = 0; z < medianArrPos.length; z++) {
+//			System.out.print(medianArrPos[z]+ " ");
+//		}
 		for(int i = 0; i < medianArrPos.length; i++)
 		{
 			int[] temp = new int [arr2D[0].length];
@@ -143,18 +143,11 @@ public class Team5 extends SortCompetition{
 	 * @param query - the Comparable key Object to be searched for
 	 * @return the position of the query in the array
 	 */
-	public int challengeFive(Comparable[] arr, Comparable query)
-	{
-		Comparable[] arr2 = mergeSort2(arr);
-		for(int i = 0; i < arr2.length;i++)
-		{
-			arr[i] = arr2[i];
-		}
-		for(int x = 0;x < arr.length;x++)
-		{
-			if(arr2[x].equals(query))
-			{
-				return x;
+	public int challengeFive(Comparable[] arr, Comparable query) {
+		bubbleSort(arr);
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i].equals(query)) {
+				return i;
 			}
 		}
 		return -1;
@@ -486,7 +479,7 @@ public class Team5 extends SortCompetition{
 	 * Sorts a String array by checking items next to each other to see which holds greater value
 	 * @param medianArr - the array to be sorted
 	 */
-	public void bubbleSort(int[] medianArr, int[] medianArrPos) {
+	public static void bubbleSort(int[] medianArr, int[] medianArrPos) {
 		int counter = medianArr.length-1;
 		while (counter > 0) {
 			for (int x = 0; x < medianArr.length-1; x++) {
@@ -506,4 +499,28 @@ public class Team5 extends SortCompetition{
 			}
 		}	
 	}
+	
+	/**
+	 * Sorts a Comparable array by checking items next to each other to see which holds greater value
+	 * @param arr - the array to be sorted
+	 */
+	public static void bubbleSort(Comparable[] arr)
+	{
+		boolean change = false;
+		while (!change) {
+			int numChanges = 0;
+			for (int x = 0; x < arr.length-1; x++) {
+				Comparable temp;
+				if (arr[x].compareTo(arr[x+1]) > 0) {
+					temp = arr[x+1];
+					arr[x+1] = arr[x];
+					arr[x] = temp;
+					numChanges++;
+				}		
+			}
+			if (numChanges == 0) {
+				change = true;
+			}
+		}
+	} 
 }
